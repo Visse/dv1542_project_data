@@ -1,0 +1,4 @@
+Program: DebugDrawerWireShader
+
+DepthCheck: None
+DepthWrite: False

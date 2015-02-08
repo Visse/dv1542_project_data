@@ -1,10 +1,18 @@
 #version 430
 
+// @SceneInfo version 1
 layout(std140) uniform SceneInfo {
     mat4 ViewMatrix, 
          ProjectionMatrix, 
-         ViewProjMatrix;
+         ViewProjMatrix,
+         
+         InvertViewMatrix,
+         InvertProjectionMatrix,
+         InvertViewProjMatrix;
+         
+    vec2 clipPlanes;
 };
+
 uniform mat4 ModelMatrix; 
 
 in vec3 Position;
@@ -23,11 +31,11 @@ void main()
 {
     gl_Position = ViewProjMatrix * ModelMatrix * vec4(Position,1.0);
     
-    mat3 viewModelMatrix = mat3(ViewMatrix * ModelMatrix);
+    mat3 modelMatrix = mat3(ModelMatrix);
     
-    frag.normal    = viewModelMatrix * Normal;
-    frag.tangent   = viewModelMatrix * Tangent;
-    frag.bitangent = viewModelMatrix * Bitangent;
+    frag.normal    = modelMatrix * normalize(Normal);
+    frag.tangent   = modelMatrix * normalize(Tangent);
+    frag.bitangent = modelMatrix * normalize(Bitangent);
     frag.texCoord = TexCoord;
-    frag.position = Position;
+    frag.position =  vec3(ModelMatrix * vec4(Position,1.0));
 }

@@ -3,7 +3,8 @@
 uniform sampler2D DiffuseTexture,
                   NormalTexture,
                   SpecularTexture,
-                  DepthTexture;
+                  DepthTexture,
+                  PositionTexture;
                   
 uniform float NearPlane, FarPlane;
                   
@@ -23,7 +24,7 @@ vec3 depthToColor( float depth )
 {
     vec3 color;
     color.r = abs(mod(depth,2)-1);
-    color.b = clamp(depth-0.5, 0.0, 1.0);
+    color.b = clamp(depth-0.25, 0.0, 1.0);
     color.g = clamp(depth-1.5, 0.0, 2.5)/2.5;
     
     return color;
@@ -31,9 +32,5 @@ vec3 depthToColor( float depth )
 
 void main()
 {
-    color = texture2D( DiffuseTexture, texcoord );
-//     float depth = linearizeDepth( texture2D(DepthTexture, texcoord).r )*4;
-//     color.rgb = depthToColor( depth );
-//     color = texture2D( NormalTexture, texcoord );
-//     color.r = 1;
+    color = texture2D( DiffuseTexture, texcoord ) * 0.15;
 }

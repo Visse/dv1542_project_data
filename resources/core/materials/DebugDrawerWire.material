@@ -1,4 +1,7 @@
 Program: DebugDrawerWireShader
 
-DepthCheck: None
 DepthWrite: False
+
+Texture: 
+    Name: DepthTexture
+    Unit: 2

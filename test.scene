@@ -1,3 +1,5 @@
+Ambient: "{0.1,0.1,0.1}"
+
 Object:
     Type: Entity
     Mesh: "core:StationCorridor"

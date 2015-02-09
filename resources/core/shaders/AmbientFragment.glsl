@@ -7,7 +7,8 @@ uniform sampler2D DiffuseTexture,
                   PositionTexture;
                   
 uniform float NearPlane, FarPlane;
-                  
+
+uniform vec3 AmbientColor;
                   
 in vec2 texcoord;
 
@@ -32,7 +33,7 @@ vec3 depthToColor( float depth )
 
 void main()
 {
-    color = texture2D( DiffuseTexture, texcoord ) * 0.15;
+    color = texture2D( DiffuseTexture, texcoord ) * vec4(AmbientColor,1);
 //     color.r = texture2D(DepthTexture, texcoord).r;
     gl_FragDepth = texture2D(DepthTexture, texcoord).r;
 }

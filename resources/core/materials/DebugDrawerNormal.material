@@ -1,4 +1,4 @@
-Program: DebugDrawerWireShader
+Program: DebugDrawerNormalShader
 
 DepthWrite: False
 DepthCheck: LessEqual

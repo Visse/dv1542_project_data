@@ -16,5 +16,4 @@ void main()
 //     if( depth < gl_FragCoord.z/gl_FragColor.w ) discard;
     
     color = Color;
-    color.r = gl_FragCoord.z/10;
 }

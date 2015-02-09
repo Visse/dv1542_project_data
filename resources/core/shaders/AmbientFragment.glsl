@@ -33,4 +33,6 @@ vec3 depthToColor( float depth )
 void main()
 {
     color = texture2D( DiffuseTexture, texcoord ) * 0.15;
+//     color.r = texture2D(DepthTexture, texcoord).r;
+    gl_FragDepth = texture2D(DepthTexture, texcoord).r;
 }

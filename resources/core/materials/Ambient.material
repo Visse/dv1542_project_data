@@ -1,5 +1,5 @@
 Program: AmbientShader
-DepthWrite: False
+#DepthWrite: False
 
 Texture:
     Name: DiffuseTexture

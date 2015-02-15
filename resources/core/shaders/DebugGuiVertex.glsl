@@ -1,6 +1,8 @@
 #version 330
 
-uniform mat4 ortho;
+uniform Debug {
+    mat4 ortho;
+};
 
 in vec2 Position;
 in vec2 UV;

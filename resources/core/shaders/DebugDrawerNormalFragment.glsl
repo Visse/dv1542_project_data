@@ -1,7 +1,7 @@
 #version 430
 
-in vec3 color;
-out vec3 frag;
+in vec4 color;
+out vec4 frag;
 
 void main()
 {

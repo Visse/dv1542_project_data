@@ -1,16 +1,16 @@
 #version 430
 
-// @SceneInfo version 1
 layout(std140) uniform SceneInfo {
     mat4 ViewMatrix, 
          ProjectionMatrix, 
          ViewProjMatrix,
          
-         InvertViewMatrix,
-         InvertProjectionMatrix,
-         InvertViewProjMatrix;
+         InverseViewMatrix,
+         InverseProjectionMatrix,
+         InverseViewProjMatrix;
          
-    vec2 clipPlanes;
+    vec2 ClippingPlanes;
+    vec3 CameraPosition;
 };
 
 in FragmentData {

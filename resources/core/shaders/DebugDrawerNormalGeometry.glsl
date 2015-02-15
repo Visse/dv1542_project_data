@@ -9,19 +9,22 @@ layout(std140) uniform SceneInfo {
          ProjectionMatrix, 
          ViewProjMatrix;
 };
-uniform mat4 ModelMatrix;
 
-uniform vec3 NormalColor,
-             TangentColor,
-             BitangentColor;
+layout(std140) uniform DebugNormal {
+    mat4 ModelMatrix;
 
-uniform float Length;
+    vec4 NormalColor,
+         TangentColor,
+         BitangentColor;
+
+    float Length;
+};
 
 in vec3 wNormal[],
         wTangent[],
         wBitangent[];
          
-out vec3 color;        
+out vec4 color;        
         
 
 void main()

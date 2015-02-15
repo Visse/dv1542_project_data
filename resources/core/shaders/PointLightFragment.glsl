@@ -1,6 +1,5 @@
 #version 430
 
-// @SceneInfo version 1
 layout(std140) uniform SceneInfo {
     mat4 ViewMatrix, 
          ProjectionMatrix, 
@@ -10,13 +9,17 @@ layout(std140) uniform SceneInfo {
          InverseProjectionMatrix,
          InverseViewProjMatrix;
          
-    vec2 clipPlanes;
-    vec3 cameraPos;
+    vec2 ClippingPlanes;
+    vec3 CameraPosition;
 };
 
-uniform float OuterRadius, InnerRadius;
-uniform vec3 Color, Specular;
-uniform mat4 ModelMatrix; 
+layout(std140) uniform PointLight 
+{
+    uniform mat4 ModelMatrix; 
+    uniform vec4 Color;
+    uniform vec2 Radius;
+};
+
 
 uniform sampler2D DiffuseTexture;
 uniform sampler2D NormalTexture;
@@ -39,10 +42,11 @@ void main()
     
     lightDirection /= lightDistance;
         
-    float attenuation = clamp( (OuterRadius - lightDistance) / (OuterRadius-InnerRadius), 0, 1 );
+    float attenuation = clamp( (Radius.y - lightDistance) / (Radius.y-Radius.x), 0, 1 );
     float diffuse = max( 0.0, dot(gNormal,lightDirection) );
 
     vec3 eyeDir = mat3(InverseViewMatrix) * vec3(0,0,-1);
+//     vec3 eyeDir = vec3(0,0,-1);
     vec3 halfVector = normalize( eyeDir + lightDirection );
     
     float specular = max( dot(gNormal, halfVector), 0.0 ) * attenuation;
@@ -55,8 +59,9 @@ void main()
     else {
         specular = pow(specular,100)/10;
     }
-    color.rgb = gDiffuse * (diffuse+specular) * attenuation * Color;
+    color.rgb = gDiffuse * (diffuse+specular) * attenuation * Color.rgb;
     
+//     color.rgb = vec3(specular);
 //     color.rgb = (gNormal+1)/2;
 //     color.rgb = lightDirection;
 }

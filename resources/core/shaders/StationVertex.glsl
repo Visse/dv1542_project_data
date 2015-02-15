@@ -1,19 +1,21 @@
 #version 430
 
-// @SceneInfo version 1
 layout(std140) uniform SceneInfo {
     mat4 ViewMatrix, 
          ProjectionMatrix, 
          ViewProjMatrix,
          
-         InvertViewMatrix,
-         InvertProjectionMatrix,
-         InvertViewProjMatrix;
+         InverseViewMatrix,
+         InverseProjectionMatrix,
+         InverseViewProjMatrix;
          
-    vec2 clipPlanes;
+    vec2 ClippingPlanes;
+    vec3 CameraPosition;
 };
 
-uniform mat4 ModelMatrix; 
+layout(std140) uniform Entity {
+    mat4 ModelMatrix; 
+};
 
 in vec3 Position;
 in vec3 Normal;

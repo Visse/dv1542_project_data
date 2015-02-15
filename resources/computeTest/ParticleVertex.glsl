@@ -6,9 +6,11 @@ layout(std140) uniform SceneInfo {
          ViewProjMatrix;
 };
 
-uniform mat4 ModelMatrix; 
-
-uniform float PointSize;
+layout(std140) uniform ComputeParticle {
+    mat4 ModelMatrix;
+    float Intensity, 
+          PointSize;
+};
 
 in vec4 particle;
 out float lifeTime;

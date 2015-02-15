@@ -6,7 +6,9 @@ layout(std140) uniform SceneInfo {
          ViewProjMatrix;
 };
 
-uniform mat4 ModelMatrix;
+layout(std140) uniform ComputeAttractors {
+    mat4 ModelMatrix;
+};
 
 in vec4 attractor;
 

@@ -1,6 +1,10 @@
 #version 430 core
 
-uniform float Intensity;
+layout(std140) uniform ComputeParticle {
+    mat4 ModelMatrix;
+    float Intensity, 
+          PointSize;
+};
 
 out vec4 color;
 

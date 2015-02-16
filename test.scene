@@ -23,6 +23,15 @@ Object:
     LightType: Ambient
     Color: "{0.1,0.1,0.1}"
     
+Object:
+    Type: Light
+    LightType: Spot
+    Color: "{0.1,0.5,0.1}"
+    Position: "{0,4,-5}"
+    Orientation: "{-1.57,0,0}"
+    OuterDistance: 4
+    InnerDistance: 3
+    
 #ResourcePack: computeTest
 #Object:
     #Type: ComputeParticle

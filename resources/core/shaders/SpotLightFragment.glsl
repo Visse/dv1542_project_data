@@ -13,18 +13,20 @@ layout(std140) uniform SceneInfo {
     vec3 CameraPosition;
 };
 
-layout(std140) uniform PointLight 
+layout(std140) uniform SpotLight
 {
     uniform mat4 ModelMatrix; 
     uniform vec4 Color;
-    uniform vec2 Radius;
+    uniform vec2 Angle, 
+                 Distance;
 };
-
 
 uniform sampler2D DiffuseTexture;
 uniform sampler2D NormalTexture;
 uniform sampler2D DepthTexture;
 uniform sampler2D PositionTexture;
+
+in vec3 LightDirection;
 
 out vec4 color;
 
@@ -38,29 +40,27 @@ void main()
     vec3 gDiffuse = texelFetch( DiffuseTexture, texcoord, 0 ).xyz;
     
     vec3 lightDirection = gPosition-Position;
-    float lightDistance = length(lightDirection);
     
-    lightDirection /= lightDistance;
-        
-    float attenuation = clamp( (Radius.y - lightDistance) / (Radius.y-Radius.x), 0, 1 );
+    float lightDistance = dot( lightDirection, LightDirection );
+    lightDirection = normalize( lightDirection );
+    float distanceMod = clamp( (Distance.y - lightDistance) / (Distance.y-Distance.x), 0, 1 );
     
+    float angleMod = smoothstep( 
+        Angle.y, Angle.x, dot(lightDirection,LightDirection)
+    );
+
     float diffuse = max( 0.0, dot(-lightDirection,gNormal) );
     
     vec3 reflection = reflect(lightDirection, gNormal);
     
     vec3 eyeDir = normalize(CameraPosition-gPosition);
     float specular = max( dot(reflection, eyeDir), 0.0 );
+    specular = pow(specular,15);
+    
+    float mod = angleMod * distanceMod;
     
     if( diffuse == 0.0 ) {
-        specular = 0.0;
+        mod = 0.0;
     }
-    else {
-        specular = pow(specular,15);
-    }
-    color.rgb = gDiffuse * (Color.rgb+specular+diffuse) * attenuation * Color.a;
-    
-//     color.rgb = vec3(gNormal+1)/2; //vec3(diffuse);
-//     color.rgb = vec3(specular);
-//     color.rgb = (eyeDir);
-//     color.rgb = (lightDirection+1)/2;
+    color.rgb = gDiffuse * (Color.rgb+specular+diffuse) * mod * Color.a;
 }

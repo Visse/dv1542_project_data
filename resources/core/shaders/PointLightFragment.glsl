@@ -45,12 +45,10 @@ void main()
     float attenuation = clamp( (Radius.y - lightDistance) / (Radius.y-Radius.x), 0, 1 );
     
     float diffuse = max( 0.0, dot(-lightDirection,gNormal) );
-
-    vec3 eyeDir = mat3(ViewMatrix) * vec3(0,0,-1);
     
     vec3 reflection = reflect(lightDirection, gNormal);
     
-    vec3 halfVector = normalize( eyeDir + lightDirection );
+    vec3 eyeDir = normalize(CameraPosition-gPosition);
     float specular = max( dot(reflection, eyeDir), 0.0 );
     
     color.rgb = vec3(specular);
@@ -59,7 +57,7 @@ void main()
         specular = 0.0;
     }
     else {
-        specular = pow(specular,10);
+        specular = pow(specular,15);
     }
     color.rgb = gDiffuse * (Color.rgb+specular+diffuse) * attenuation * Color.a;
     

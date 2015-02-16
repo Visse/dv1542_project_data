@@ -32,10 +32,10 @@ void main()
         normalize(vert.tangent),  normalize(vert.bitangent), normalize(vert.normal)
     ));
     
-    vec3 normalMap = (texture2D( NormalTexture, vert.texCoord ).xyz+1)/2;
+    vec3 normalMap = texture2D( NormalTexture, vert.texCoord ).xyz*2 - 1;
     
     Diffuse = texture2D( DiffuseTexture, vert.texCoord );
-    Normal  =  tangentToWorldSpace * normalMap;
+    Normal = normalize(tangentToWorldSpace*normalMap);
     Position =  vert.position;
     
 //     Normal  = (normalize(vert.tangent)+1) / 2;

@@ -20,6 +20,11 @@ Object:
     Color: "{1,1,1}"
     Position: "{0, 1, -10}"
 
+Object:
+    Type: Light
+    LightType: Ambient
+    Color: "{0.1,0.1,0.1}"
+    
 #ResourcePack: computeTest
 #Object:
     #Type: ComputeParticle

@@ -34,22 +34,24 @@ void main()
     vec3 Position = ModelMatrix[3].xyz;
     
     vec3 gPosition = texelFetch( PositionTexture, texcoord, 0 ).xyz;
-    vec3 gNormal = texelFetch( NormalTexture, texcoord, 0 ).xyz*2 - 1;
+    vec3 gNormal = texelFetch( NormalTexture, texcoord, 0 ).xyz;
     vec3 gDiffuse = texelFetch( DiffuseTexture, texcoord, 0 ).xyz;
     
-    vec3 lightDirection = Position - gPosition;
+    vec3 lightDirection = gPosition-Position;
     float lightDistance = length(lightDirection);
     
     lightDirection /= lightDistance;
         
     float attenuation = clamp( (Radius.y - lightDistance) / (Radius.y-Radius.x), 0, 1 );
-    float diffuse = max( 0.0, dot(gNormal,lightDirection) );
-
-    vec3 eyeDir = mat3(InverseViewMatrix) * vec3(0,0,-1);
-//     vec3 eyeDir = vec3(0,0,-1);
-    vec3 halfVector = normalize( eyeDir + lightDirection );
     
-    float specular = max( dot(gNormal, halfVector), 0.0 ) * attenuation;
+    float diffuse = max( 0.0, dot(-lightDirection,gNormal) );
+
+    vec3 eyeDir = mat3(ViewMatrix) * vec3(0,0,-1);
+    
+    vec3 reflection = reflect(lightDirection, gNormal);
+    
+    vec3 halfVector = normalize( eyeDir + lightDirection );
+    float specular = max( dot(reflection, eyeDir), 0.0 );
     
     color.rgb = vec3(specular);
     
@@ -57,11 +59,12 @@ void main()
         specular = 0.0;
     }
     else {
-        specular = pow(specular,100)/10;
+        specular = pow(specular,10);
     }
-    color.rgb = gDiffuse * (diffuse+specular) * attenuation * Color.rgb;
+    color.rgb = gDiffuse * (Color.rgb+specular+diffuse) * attenuation * Color.a;
     
+//     color.rgb = vec3(gNormal+1)/2; //vec3(diffuse);
 //     color.rgb = vec3(specular);
-//     color.rgb = (gNormal+1)/2;
-//     color.rgb = lightDirection;
+//     color.rgb = (eyeDir);
+//     color.rgb = (lightDirection+1)/2;
 }

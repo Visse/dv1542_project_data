@@ -32,6 +32,25 @@ Object:
     OuterDistance: 4
     InnerDistance: 3
     
+Object:
+    Type: Light
+    LightType: Box
+    Color: "{0.5,0.1,0.1}"
+    Position: "{0,4.0,-15}"
+    Orientation: "{-1.57,0,0}"
+    OuterSize: "{4,2,2.5}"
+    InnerSize: "{0.5,0.5,1.5}"
+    
+Object:
+    Type: Light
+    LightType: Box
+    Color: "{0.5,0.1,0.1}"
+    Position: "{0,0.0,-15}"
+    Orientation: "{1.57,0,0}"
+    OuterSize: "{4,2,2.5}"
+    InnerSize: "{0.5,0.5,1.5}"
+    Intensity: 0.05
+    
 #ResourcePack: computeTest
 #Object:
     #Type: ComputeParticle

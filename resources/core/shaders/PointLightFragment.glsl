@@ -42,7 +42,7 @@ void main()
     
     lightDirection /= lightDistance;
         
-    float attenuation = clamp( (Radius.y - lightDistance) / (Radius.y-Radius.x), 0, 1 );
+    float attenuation = smoothstep( Radius.y, Radius.x, lightDistance );
     
     float diffuse = max( 0.0, dot(-lightDirection,gNormal) );
     
@@ -58,9 +58,4 @@ void main()
         specular = pow(specular,15);
     }
     color.rgb = gDiffuse * (Color.rgb+specular+diffuse) * attenuation * Color.a;
-    
-//     color.rgb = vec3(gNormal+1)/2; //vec3(diffuse);
-//     color.rgb = vec3(specular);
-//     color.rgb = (eyeDir);
-//     color.rgb = (lightDirection+1)/2;
 }

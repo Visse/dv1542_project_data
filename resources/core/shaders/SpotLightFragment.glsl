@@ -43,7 +43,7 @@ void main()
     
     float lightDistance = dot( lightDirection, LightDirection );
     lightDirection = normalize( lightDirection );
-    float distanceMod = clamp( (Distance.y - lightDistance) / (Distance.y-Distance.x), 0, 1 );
+    float distanceMod = smoothstep( Distance.y, Distance.x, lightDistance );
     
     float angleMod = smoothstep( 
         Angle.y, Angle.x, dot(lightDirection,LightDirection)

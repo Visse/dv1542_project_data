@@ -1,0 +1,6 @@
+Program: SkyBoxShader
+DepthWrite: False
+
+Texture:
+    Name: SkyBox
+    Texture: SpaceSkyBox

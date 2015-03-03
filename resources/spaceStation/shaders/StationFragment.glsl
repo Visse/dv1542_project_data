@@ -36,7 +36,7 @@ void main()
     vec3 normalMap = texture2D( NormalTexture, vert.texCoord ).xyz*2 - 1;
     
     Diffuse = texture2D( DiffuseTexture, vert.texCoord );
-    Normal = normalize(tangentToWorldSpace*normalMap);
+    Normal = normalize(tangentToWorldSpace*normalMap)*0.5+0.5;
     Position =  vert.position;
     
     Diffuse.a = texture2D(SpecularIntesity, vert.texCoord).r;

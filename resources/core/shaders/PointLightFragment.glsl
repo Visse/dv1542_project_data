@@ -34,7 +34,7 @@ void main()
     vec3 Position = ModelMatrix[3].xyz;
     
     vec3 gPosition = texelFetch( PositionTexture, texcoord, 0 ).xyz;
-    vec3 gNormal = texelFetch( NormalTexture, texcoord, 0 ).xyz;
+    vec3 gNormal = texelFetch( NormalTexture, texcoord, 0 ).xyz * 2.0 - 1.0;
     vec3 gDiffuse = texelFetch( DiffuseTexture, texcoord, 0 ).xyz;
     
     vec3 lightDirection = gPosition-Position;

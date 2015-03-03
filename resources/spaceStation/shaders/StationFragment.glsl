@@ -25,6 +25,7 @@ out vec3 Position;
 
 uniform sampler2D DiffuseTexture;
 uniform sampler2D NormalTexture;
+uniform sampler2D SpecularIntesity;
 
 void main()
 {
@@ -38,7 +39,5 @@ void main()
     Normal = normalize(tangentToWorldSpace*normalMap);
     Position =  vert.position;
     
-//     Normal  = (normalize(vert.tangent)+1) / 2;
-//     Diffuse = texture2D( NormalTexture, vert.texCoord ) + 0.1;
-//     Normal = (normalize(vert.normal)+1)/2;
+    Diffuse.a = texture2D(SpecularIntesity, vert.texCoord).r;
 }

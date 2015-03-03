@@ -1,0 +1,15 @@
+Program: StationShader
+
+Texture:
+      Name: DiffuseTexture
+      Texture: StationDiffuse
+
+Texture:
+    Name: NormalTexture
+    Texture: StationNormal
+    
+Texture:
+    Name: SpecularIntesity
+    Texture: StationSpecularIntesity
+
+    

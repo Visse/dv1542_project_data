@@ -1,18 +1,20 @@
 ResourcePack: spaceskybox
+ResourcePack: spaceStation
+
 Object:
     Type: SkyBox
     Material: SpaceSkyBoxMaterial
 
 Object:
     Type: Entity
-    Mesh: "core:StationCorridor"
+    Mesh: "StationCorridor"
 Object:
     Type: Entity
-    Mesh: "core:StationCorridorWindow"
+    Mesh: "StationCorridorWindow"
     Position: "{0, 0, -10}"
 Object:
     Type: Entity
-    Mesh: "core:StationCorridorDoor"
+    Mesh: "StationCorridorDoor"
     Position: "{0, 0, -10}"
 
 Object:

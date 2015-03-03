@@ -35,7 +35,7 @@ void main()
     
     vec3 gPosition = texelFetch( PositionTexture, texcoord, 0 ).xyz;
     vec3 gNormal = texelFetch( NormalTexture, texcoord, 0 ).xyz * 2.0 - 1.0;
-    vec3 gDiffuse = texelFetch( DiffuseTexture, texcoord, 0 ).xyz;
+    vec4 gDiffuse = texelFetch( DiffuseTexture, texcoord, 0 );
     
     vec3 lightDirection = gPosition-Position;
     float lightDistance = length(lightDirection);
@@ -55,7 +55,7 @@ void main()
         specular = 0.0;
     }
     else {
-        specular = pow(specular,15);
+        specular = pow(specular,15)* gDiffuse.a;
     }
-    color.rgb = gDiffuse * (Color.rgb+specular+diffuse) * attenuation * Color.a;
+    color.rgb = gDiffuse.rgb * (Color.rgb+specular+diffuse) * attenuation * Color.a;
 }

@@ -36,7 +36,7 @@ void main()
     
     vec3 gPosition = texelFetch( PositionTexture, texcoord, 0 ).xyz;
     vec3 gNormal = texelFetch( NormalTexture, texcoord, 0 ).xyz*2.0 - 1.0;
-    vec3 gDiffuse = texelFetch( DiffuseTexture, texcoord, 0 ).xyz;
+    vec4 gDiffuse = texelFetch( DiffuseTexture, texcoord, 0 );
     
     vec3 lightDirection = gPosition-Position;
     
@@ -57,12 +57,12 @@ void main()
     
     vec3 eyeDir = normalize(CameraPosition-gPosition);
     float specular = max( dot(reflection, eyeDir), 0.0 );
-    specular = pow(specular,15);
+    specular = pow(specular,15) * gDiffuse.a;
     
     float mod = dist.x*dist.y*dist.z;
     if( diffuse == 0.0 ) {
         mod = 0.0;
     }
     
-    color.rgb = gDiffuse * (Color.rgb+specular+diffuse) * mod * Color.a;
+    color.rgb = gDiffuse.rgb * (Color.rgb+specular+diffuse) * mod * Color.a;
 }

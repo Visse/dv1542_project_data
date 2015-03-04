@@ -16,6 +16,15 @@ Object:
     Type: Entity
     Mesh: "StationCorridorDoor"
     Position: "{0, 0, -10}"
+Object:
+    Type: Entity
+    Mesh: "StationCorridorTCross"
+    Position: "{-5, 0, -25}"
+    Orientation: "{0, -1.57, 0}"
+Object:
+    Type: Entity
+    Mesh: "StationCorridorDoor"
+    Position: "{0, 0, -20}"
 
 Object:
     Type: Light
@@ -28,7 +37,7 @@ Object:
 Object:
     Type: Light
     LightType: Ambient
-    Color: "{0.1,0.1,0.1}"
+    Color: "{0.4,0.4,0.4}"
     
 Object:
     Type: Light

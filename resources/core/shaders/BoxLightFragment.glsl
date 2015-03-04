@@ -24,17 +24,26 @@ layout(std140) uniform BoxLight
 uniform sampler2D DiffuseTexture;
 uniform sampler2D NormalTexture;
 uniform sampler2D DepthTexture;
-uniform sampler2D PositionTexture;
 
 in vec3 BoxDir[3];
 out vec4 color;
+
+vec3 extractPositionFromDepth( float depth )
+{
+    vec4 pos = vec4( gl_FragCoord.xy / textureSize(DepthTexture,0).xy, depth, 1 );
+    pos = pos*2 - 1;
+    
+    pos = InverseViewProjMatrix * pos;
+    
+    return pos.xyz / pos.w;
+}
 
 void main()
 {
     ivec2 texcoord = ivec2(gl_FragCoord.xy);
     vec3 Position = ModelMatrix[3].xyz;
     
-    vec3 gPosition = texelFetch( PositionTexture, texcoord, 0 ).xyz;
+    vec3 gPosition = extractPositionFromDepth( texelFetch(DepthTexture, texcoord, 0) );
     vec3 gNormal = texelFetch( NormalTexture, texcoord, 0 ).xyz*2.0 - 1.0;
     vec4 gDiffuse = texelFetch( DiffuseTexture, texcoord, 0 );
     

@@ -13,7 +13,3 @@ Texture:
 Texture: 
     Name: DepthTexture
     Unit: 2
-
-Texture:
-    Name: PositionTexture
-    Unit: 3

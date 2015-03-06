@@ -26,7 +26,7 @@ in vec3 Normal;
 
 void main()
 {
-    gl_Position = ViewProjMatrix * ModelMatrix * vec4(Position*Radius.y,1.0);
+    gl_Position = ViewProjMatrix * ModelMatrix * vec4(Position,1.0);
     
     // this fixes visual glitching (culling & clipping) when the camera is inside the light volume
     // it basicly clips everything behind the camera to the near plane, a problem with it is that it

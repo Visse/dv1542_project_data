@@ -65,5 +65,5 @@ void main()
     else {
         specular = pow(specular,15)* gDiffuse.a;
     }
-    color.rgb = gDiffuse.rgb * (Color.rgb+specular+diffuse) * attenuation;
+    color.rgb = gDiffuse.rgb * (Color.rgb+specular+diffuse) * attenuation * Color.a;
 }

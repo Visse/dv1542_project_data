@@ -1,0 +1,35 @@
+Shader:
+    Type: Vertex
+    Source: DeferredLightVertex.glsl
+    
+Shader: 
+    Type: Fragment
+    Source: DeferredPointLightFragment.glsl
+
+Attribute:
+    Name: Position
+    Index: 0
+    
+Sampler:
+    Name: DiffuseTexture
+    Unit: 0
+
+Sampler:
+    Name: NormalTexture
+    Unit: 1
+
+Sampler:
+    Name: DepthTexture
+    Unit: 2
+    
+UniformBlock: 
+    Name: SceneInfo
+    Index: 0
+    
+UniformBlock: 
+    Name: PointLight
+    Index: 1
+    
+UniformBlock: 
+    Name: Model
+    Index: 1

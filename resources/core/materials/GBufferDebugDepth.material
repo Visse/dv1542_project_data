@@ -1,4 +1,0 @@
-Program: GBufferDebugDepthShader
-DepthWrite: False
-DepthRead: False
-

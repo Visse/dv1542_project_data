@@ -1,0 +1,37 @@
+Shader:
+    Type: Vertex
+    Source: DebugDrawerNormalVertex.glsl
+Shader:
+    Type: Geometry
+    Source: DebugDrawerNormalGeometry.glsl
+Shader:
+    Type: Fragment
+    Source: DebugDrawerNormalFragment.glsl
+    
+Attribute:
+    Name: Position
+    Index: 0 
+
+Attribute:
+    Name: Normal
+    Index: 1
+
+Attribute:
+    Name: Texcoord
+    Index: 2
+
+Attribute:
+    Name: Tangent
+    Index: 3
+        
+Attribute:
+    Name: Bitangent
+    Index: 4
+    
+UniformBlock:
+    Name: SceneInfo
+    Index: 0
+    
+UniformBlock:
+    Name: DebugNormal
+    Index: 1

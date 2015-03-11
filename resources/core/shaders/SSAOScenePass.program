@@ -1,0 +1,22 @@
+Shader:
+    Type: Vertex
+    Source: SSAOScenePassVertex.glsl
+Shader:
+    Type: Fragment
+    Source: SSAOScenePassFragment.glsl
+
+Attribute:
+    Name: Position
+    Index: 0
+
+Attribute:
+    Name: Normal
+    Index: 1
+    
+UniformBlock:
+    Name: SceneInfo
+    Index: 0
+    
+UniformBlock:
+    Name: Model
+    Index: 1

@@ -1,0 +1,21 @@
+Shader:
+    Type: Vertex
+    Source: DebugDrawerWireVertex.glsl
+Shader:
+    Type: Geometry
+    Source: DebugDrawerWireGeometry.glsl
+Shader:
+    Type: Fragment
+    Source: DebugDrawerWireFragment.glsl
+
+Attribute:
+    Name: Position
+    Index: 0
+    
+UniformBlock:
+    Name: SceneInfo
+    Index: 0
+    
+UniformBlock:
+    Name: DebugWireframe
+    Index: 1

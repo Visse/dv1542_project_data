@@ -1,0 +1,25 @@
+Shader:
+    Type: Vertex
+    Source: FullScreenQuadVertex.glsl
+Shader:
+    Type: Geometry
+    Source: FullScreenQuadGeometry.glsl
+Shader:
+    Type: Fragment
+    Source: SSAOFragment.glsl
+    
+Sampler:
+    Name: NormalTexture
+    Unit: 0
+
+Sampler:
+    Name: DepthTexture
+    Unit: 1
+    
+Sampler:
+    Name: NoiseTexture
+    Unit: 2
+
+UniformBlock:
+    Name: SceneInfo
+    Index: 0

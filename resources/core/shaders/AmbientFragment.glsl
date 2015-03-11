@@ -15,6 +15,6 @@ out vec4 color;
 
 void main()
 {
-    color = texture2D( DiffuseTexture, texcoord ) * vec4(AmbientColor,1);
+    color = texture2DLod( DiffuseTexture, texcoord ) * vec4(AmbientColor,1);
     gl_FragDepth = texture2D(DepthTexture, texcoord).r;
 }

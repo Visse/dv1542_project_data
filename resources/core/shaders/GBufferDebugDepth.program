@@ -1,0 +1,9 @@
+Shader:
+    Type: Vertex
+    Source: FullScreenQuadVertex.glsl
+Shader:
+    Type: Geometry
+    Source: FullScreenQuadGeometry.glsl
+Shader:
+    Type: Fragment
+    Source: GBufferDepthFragment.glsl

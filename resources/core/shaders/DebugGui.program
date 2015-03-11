@@ -1,0 +1,26 @@
+Shader:
+    Type: Vertex
+    Source: DebugGuiVertex.glsl
+Shader:
+    Type: Fragment
+    Source: DebugGuiFragment.glsl
+    
+Attribute:
+    Name: Position
+    Index: 0
+    
+Attribute:
+    Name: UV
+    Index: 1
+    
+Attribute:
+    Name: Colour
+    Index: 2
+    
+UniformBlock:
+    Name: Debug
+    Index: 0
+    
+Sampler:
+    Name: Texture
+    Unit: 0

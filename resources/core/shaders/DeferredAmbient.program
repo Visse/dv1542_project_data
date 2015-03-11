@@ -1,0 +1,18 @@
+Shader:
+    Type: Vertex
+    Source: FullScreenQuadVertex.glsl
+Shader:
+    Type: Geometry
+    Source: FullScreenQuadGeometry.glsl
+Shader:
+    Type: Fragment
+    Source: DeferredAmbientFragment.glsl
+    
+Sampler:
+    Name: Diffuse
+    Unit: 0
+
+UniformBlock:
+    Name: AmbientSettings
+    Index: 1
+    

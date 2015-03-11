@@ -1,0 +1,15 @@
+Shader:
+    Type: Vertex
+    Source: FullScreenQuadVertex.glsl
+Shader:
+    Type: Geometry
+    Source: FullScreenQuadGeometry.glsl
+Shader:
+    Type: Fragment
+    Source: DeferredCopyDepthFragment.glsl
+    
+Sampler:
+    Name: Depth
+    Unit: 2
+
+    

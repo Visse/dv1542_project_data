@@ -6,25 +6,39 @@ Object:
     Material: SpaceSkyBoxMaterial
 
 Object:
-    Type: Entity
+    Type: DeferredEntity
     Mesh: "StationCorridor"
+    DiffuseTexture: StationDiffuse
+    NormalMap: StationNormal
+    
 Object:
-    Type: Entity
+    Type: DeferredEntity
     Mesh: "StationCorridorWindow"
     Position: "{0, 0, -10}"
+    DiffuseTexture: StationDiffuse
+    NormalMap: StationNormal
+    
 Object:
-    Type: Entity
+    Type: DeferredEntity
     Mesh: "StationCorridorDoor"
     Position: "{0, 0, -10}"
+    DiffuseTexture: StationDiffuse
+    NormalMap: StationNormal
+    
 Object:
-    Type: Entity
+    Type: DeferredEntity
     Mesh: "StationCorridorTCross"
     Position: "{-5, 0, -25}"
     Orientation: "{0, -1.57, 0}"
+    DiffuseTexture: StationDiffuse
+    NormalMap: StationNormal
+    
 Object:
-    Type: Entity
+    Type: DeferredEntity
     Mesh: "StationCorridorDoor"
     Position: "{0, 0, -20}"
+    DiffuseTexture: StationDiffuse
+    NormalMap: StationNormal
 
 Object:
     Type: Light

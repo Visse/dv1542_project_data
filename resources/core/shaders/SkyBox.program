@@ -1,0 +1,18 @@
+Shader:
+    Type: Vertex
+    Source: SkyBoxVertex.glsl
+Shader:
+    Type: Fragment
+    Source: SkyBoxFragment.glsl
+    
+Attribute:
+    Name: Position
+    Index: 0
+    
+UniformBlock:
+    Name: SceneInfo
+    Index: 0
+    
+Sampler:
+    Name: SkyBox
+    Unit: 0

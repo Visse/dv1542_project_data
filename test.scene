@@ -1,5 +1,9 @@
 ResourcePack: spaceskybox
 ResourcePack: spaceStation
+ResourcePack: lightRoom
+
+AmbientColor: "{0.5,0.5,0.5}"
+SkyBox: SpaceSkyBox
 
 Object:
     Type: SkyBox
@@ -42,44 +46,27 @@ Object:
 
 Object:
     Type: Light
-    LightType: Point
-    OuterRadius: 2
+    LightType: MovingSpheres
+    OuterRadius: 7.5
     InnerRadius: 1
     Color: "{1,1,1}"
-    Position: "{0, 1, -10}"
+    Position: "{0, 2.1, 5.25}"
 
 Object:
-    Type: Light
-    LightType: Ambient
-    Color: "{0.4,0.4,0.4}"
+    Type: DeferredEntity
+    Mesh: "StationCorridorDoor"
+    Position: "{0, 0, 0}"
+    DiffuseTexture: StationDiffuse
+    NormalMap: StationNormal
     
 Object:
-    Type: Light
-    LightType: Spot
-    Color: "{0.1,0.5,0.1}"
-    Position: "{0,4,-5}"
-    Orientation: "{-1.57,0,0}"
-    OuterDistance: 4
-    InnerDistance: 3
-    
-Object:
-    Type: Light
-    LightType: Box
-    Color: "{0.5,0.1,0.1}"
-    Position: "{0,4.0,-15}"
-    Orientation: "{-1.57,0,0}"
-    OuterSize: "{8,4,5}"
-    InnerSize: "{1,1,3}"
-    
-Object:
-    Type: Light
-    LightType: Box
-    Color: "{0.5,0.1,0.1}"
-    Position: "{0,0.0,-15}"
-    Orientation: "{1.57,0,0}"
-    OuterSize: "{8,4,5}"
-    InnerSize: "{1,1,3}"
-    Intensity: 0.05
+    Type: DeferredEntity
+    Mesh: "LightRoomMesh"
+    Position: "{0, 0, 5.25}"
+    Orientation: "{0,3.14,0}"
+    DiffuseTexture: LightRoomDiffuse
+    NormalMap: LightRoomNormal
+
     
 #ResourcePack: computeTest
 #Object:

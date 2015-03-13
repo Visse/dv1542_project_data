@@ -22,6 +22,10 @@ Sampler:
     Name: DepthTexture
     Unit: 2
     
+Sampler:
+    Name: ShadowMap
+    Unit: 3
+    
 UniformBlock: 
     Name: SceneInfo
     Index: 0
@@ -33,3 +37,7 @@ UniformBlock:
 UniformBlock: 
     Name: Model
     Index: 1
+
+UniformBlock: 
+    Name: ShadowUniforms
+    Index: 2

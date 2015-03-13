@@ -1,0 +1,22 @@
+Shader:
+    Type: Vertex
+    Source: DeferredPointLightShadowCasterVertex.glsl
+Shader:
+   Type: Geometry
+   Source: DeferredPointLightShadowCasterGeometry.glsl
+Shader:
+    Type: Fragment
+    Source: DeferredPointLightShadowCasterFragment.glsl
+
+Attribute:
+    Name: Position
+    Index: 0
+    
+UniformBlock:
+    Name: ShadowUniforms
+    Index: 2
+    
+UniformBlock:
+    Name: ShadowModel
+    Index: 3
+    

@@ -20,9 +20,18 @@ layout(std140) uniform PointLight
     uniform vec2 Radius;
 };
 
+
+layout(std140) uniform ShadowUniforms {
+    mat4 viewProjMatrix[6];
+    vec3 lightPosition;
+    vec2 clippingPlanes;
+};
+
 uniform sampler2D DiffuseTexture;
 uniform sampler2D NormalTexture;
 uniform sampler2D DepthTexture;
+
+uniform samplerCube ShadowMap;
 
 out vec4 color;
 
@@ -65,5 +74,13 @@ void main()
     else {
         specular = pow(specular,15)* gDiffuse.a;
     }
-    color.rgb = gDiffuse.rgb * (Color.rgb+specular+diffuse) * attenuation * Color.a;
+    
+    
+    float shadowDist = texture(ShadowMap, normalize(lightDirection)).r;
+    float depthDistance = (lightDistance - clippingPlanes.x) / clippingPlanes.y;
+    float shadowMod = 1-step( shadowDist, depthDistance );
+    
+    color.rgb = gDiffuse.rgb * (Color.rgb+specular+diffuse) * attenuation * Color.a * shadowMod;
+    
+//     color.rgb = vec3(depthDistance);
 }

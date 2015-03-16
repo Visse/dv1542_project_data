@@ -1,0 +1,14 @@
+Shader:
+    Type: Vertex
+    Source: ParticleVertex.glsl
+Shader:
+    Type: Fragment
+    Source: ParticleFragment.glsl
+    
+UniformBlock:
+    Name: SceneInfo
+    Index: 0
+    
+UniformBlock:
+    Name: ComputeParticle
+    Index: 1

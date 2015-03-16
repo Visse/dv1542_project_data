@@ -1,6 +1,9 @@
 ResourcePack: spaceskybox
 ResourcePack: spaceStation
 ResourcePack: lightRoom
+ResourcePack: roboArm
+ResourcePack: computeTest
+ResourcePack: particleRoom
 
 AmbientColor: "{0.5,0.5,0.5}"
 SkyBox: SpaceSkyBox
@@ -51,7 +54,7 @@ Object:
     InnerRadius: 1
     Color: "{1,1,1}"
     Position: "{0, 2.1, 5.25}"
-
+    
 Object:
     Type: DeferredEntity
     Mesh: "StationCorridorDoor"
@@ -67,15 +70,30 @@ Object:
     DiffuseTexture: LightRoomDiffuse
     NormalMap: LightRoomNormal
 
+Object:
+    Type: DeferredEntity
+    Mesh: "StationCorridorDoor"
+    Position: "{4.8, 0, -25}"
+    Orientation: "{0,1.57,0}"
+    DiffuseTexture: StationDiffuse
+    NormalMap: StationNormal
+Object:
+    Type: DeferredEntity
+    Mesh: "ParticleRoomMesh"
+    Position: "{10, 0, -25}"
+    Orientation: "{0,-1.57,0}"
+    DiffuseTexture: ParticleRoomDiffuse
+    NormalMap: ParticleRoomNormal
     
-#ResourcePack: computeTest
-#Object:
-    #Type: ComputeParticle
-    #Position: "{0, 2.5, 0}"
-#Object:
-    #Type: ComputeParticle
-    #Position: "{0, 2.5, -10}"
-#Object:
-    #Type: ComputeParticle
-    #Position: "{0, 2.5, -20}"
+Object:
+    Type: ComputeParticle
+    Position: "{10, 2.0, -25}"
     
+Object:
+    Type: Light
+    LightType: RandomMovingPoint
+    OuterRadius: 7.5
+    InnerRadius: 1
+    Color: "{1,1,1}"
+    Position: "{10, 2.0, -25}"
+    Intensity: 0.2

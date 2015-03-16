@@ -1,0 +1,13 @@
+Shader:
+    Type: Vertex
+    Source: ParticleAttractorVertex.glsl
+Shader:
+    Type: Fragment
+    Source: ParticleAttractorFragment.glsl
+
+UniformBlock:
+    Name: SceneUniforms
+    Index: 0
+UniformBlock:
+    Name: ComputeAttractors
+    Index: 1

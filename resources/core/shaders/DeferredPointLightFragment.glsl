@@ -31,7 +31,7 @@ uniform sampler2D DiffuseTexture;
 uniform sampler2D NormalTexture;
 uniform sampler2D DepthTexture;
 
-uniform samplerCube ShadowMap;
+uniform samplerCubeShadow ShadowMap;
 
 out vec4 color;
 
@@ -76,9 +76,8 @@ void main()
     }
     
     
-    float shadowDist = texture(ShadowMap, normalize(lightDirection)).r;
     float depthDistance = (lightDistance - clippingPlanes.x) / clippingPlanes.y;
-    float shadowMod = 1-step( shadowDist, depthDistance );
+    float shadowMod = texture( ShadowMap, vec4(lightDirection,depthDistance) );
     
     color.rgb = gDiffuse.rgb * (Color.rgb+specular+diffuse) * attenuation * Color.a * shadowMod;
     

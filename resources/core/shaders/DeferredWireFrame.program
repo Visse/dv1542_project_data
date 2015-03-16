@@ -1,0 +1,17 @@
+Shader:
+    Type: Vertex
+    Source: DeferredWireFrameVertex.glsl
+Shader:
+    Type: Geometry
+    Source: DeferredWireFrameGeometry.glsl
+Shader:
+    Type: Fragment
+    Source: DeferredWireFrameFragment.glsl
+    
+    
+UniformBlock:
+    Name: SceneInfo
+    Index: 0
+UniformBlock:
+    Name: Model
+    Index: 1

@@ -10,14 +10,28 @@ out vec4 color;
 
 in float lifeTime;
 
+const vec4 Color1 = vec4(0.0,  0.8, 0.2, 0.0);
+const vec4 Color2 = vec4(0.0, 0.0, 0.8, 1.0);
+const vec4 Color3 = vec4(0.0, 0.2, 0.0, 0.0);
+
 void main()
 {
-    float fade = min(2-abs(lifeTime*2-1)*2,1);
+    // mix our color, based on our current lifetime
+    float lifeFade = smoothstep(0.0, 1.0, 1-abs(1-lifeTime*2) );
     color = mix( 
-        vec4(0.0,  0.1, 0.2, 1.0),
-        vec4(0.2, 0.05, 0.0, 1.0),
-        lifeTime
-    ) * fade * Intensity;
-    // make the point less square and more round :)
-    color *= min( (1-length(vec2(1)-gl_PointCoord*2))*4, 1.0 );
+        Color1, Color2, lifeFade
+    );
+    
+    vec2 dist = gl_PointCoord - vec2(0.5);
+    float shape = dot( dist, dist );
+    
+    if( shape > 0.25 ) {
+        discard;
+    }
+    
+    color = mix( Color3, color, smoothstep(0.0,0.25,shape) ) * Intensity;
+    color.rgb *= color.a;
+    
+    // this out the particle as its gets closer to the camera
+    color *= smoothstep(0.0,1.0, gl_FragCoord.z);
 }

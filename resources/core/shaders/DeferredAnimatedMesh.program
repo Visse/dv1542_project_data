@@ -1,0 +1,62 @@
+Shader:
+    Type: Vertex
+    Source: DeferredAnimatedMeshVertex.glsl
+Shader:
+    Type: Fragment
+    Source: DeferredMeshFragment.glsl
+
+Attribute:
+    Name: Position
+    Index: 0
+    
+Attribute:
+    Name: Normal
+    Index: 1
+
+Attribute: 
+    Name: TexCoord
+    Index: 2
+    
+Attribute:
+    Name: Tangent
+    Index: 3
+
+Attribute:
+    Name: Bitangent
+    Index: 4
+    
+Attribute:
+    Name: BoneIndexes
+    Index: 5
+    
+Attribute:
+    Name: BoneWeights
+    Index: 6
+    
+Sampler:
+    Name: DiffuseTexture
+    Unit: 0
+    
+Sampler:
+    Name: NormalTexture
+    Unit: 1
+    
+UniformBlock:
+    Name: SceneInfo
+    Index: 0
+    
+UniformBlock:
+    Name: Model
+    Index: 1
+
+UniformBlock:
+    Name: Skeleton
+    Index: 2
+    
+Output:
+    Name: Diffuse
+    Index: 0
+    
+Output:
+    Name: Normal
+    Index: 1

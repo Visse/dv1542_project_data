@@ -1,0 +1,19 @@
+Shader:
+    Type: Vertex
+    Source: ScreenQuadVertex.glsl
+Shader:
+    Type: Geometry
+    Source: ScreenQuadGeometry.glsl
+Shader:
+    Type: Fragment
+    Source: DebugDrawerTexture.glsl
+    
+Sampler:
+    Name: Texture
+    Unit: 0
+    
+UniformBlock:
+    Name: QuadInfo
+    Index: 1
+    
+    

@@ -5,12 +5,8 @@ ResourcePack: roboArm
 ResourcePack: computeTest
 ResourcePack: particleRoom
 
-AmbientColor: "{0.5,0.5,0.5}"
+AmbientColor: "{0.3,0.3,0.3}"
 SkyBox: SpaceSkyBox
-
-Object:
-    Type: SkyBox
-    Material: SpaceSkyBoxMaterial
 
 Object:
     Type: DeferredEntity
@@ -49,11 +45,29 @@ Object:
 
 Object:
     Type: Light
-    LightType: MovingSpheres
+    LightType: Point
     OuterRadius: 7.5
     InnerRadius: 1
     Color: "{1,1,1}"
     Position: "{0, 2.1, 5.25}"
+    
+Object:
+    Type: RandomMovingObjects
+    Position: "{0, 2.1, 5.25}"
+    ObjectCount: 10
+    Radius: 3
+    TimeMultipler: 0.2
+    Template:
+        Type: RandomMovingObjects
+        ObjectCount: 5
+        Radius: 0.5
+        Template:
+            Type: PulsingObject
+            Mesh: Sphere
+            DiffuseTexture: LavaDiffuseImage
+            NormalMap: LavaNormalImage
+            MaxScale: 0.15
+            MinScale: 0.1
     
 Object:
     Type: DeferredEntity
@@ -90,10 +104,111 @@ Object:
     Position: "{10, 2.0, -25}"
     
 Object:
-    Type: Light
-    LightType: RandomMovingPoint
-    OuterRadius: 7.5
-    InnerRadius: 1
-    Color: "{1,1,1}"
+    Type: RandomMovingObjects
     Position: "{10, 2.0, -25}"
-    Intensity: 0.2
+    ObjectCount: 2
+    Template:
+        Type: Light
+        LightType: Point
+        OuterRadius: 7.5
+        InnerRadius: 1
+        Color: "{1,1,1}"
+        Intensity: 0.2
+
+    
+#Tiled:
+#    Count: "{40,20,10}"
+#    Spacing: "{2.2,2.5,2.5}"
+#    Object:
+#        Type: DeferredEntity
+#        Mesh: "Sphere"
+#        DiffuseTexture: LavaDiffuseImage
+#        NormalMap: LavaNormalImage
+#        Position: "{-45,-10,15}"
+        
+        
+Tiled:
+    Count: "{1,1,17}"
+    Spacing: "{0,0,-1.5}"
+    Object:
+        Type: Light
+        LightType: Point
+        OuterRadius: 0.7
+        InnerRadius: 0.1
+        Color: "{0.5,0.5,1}"
+        Position: "{0.7, 0.3, 0}"
+        CastShadow: false
+        
+Tiled:
+    Count: "{1,1,17}"
+    Spacing: "{0,0,-1.5}"
+    Object:
+        Type: Light
+        LightType: Point
+        OuterRadius: 0.7
+        InnerRadius: 0.1
+        Color: "{0.5,0.5,1}"
+        Position: "{-0.7, 0.3, 0}"
+        CastShadow: false
+        
+Tiled:
+    Count: "{1,1,8}"
+    Spacing: "{0,0,-3}"
+    Object:
+        Type: Light
+        LightType: Point
+        OuterRadius: 2.6
+        InnerRadius: 0.1
+        Color: "{0.5,0.5,0.8}"
+        Position: "{0, 3.5, 0}"
+        CastShadow: false
+        Intensity: 0.1
+        
+Tiled:
+    Count: "{7,1,1}"
+    Spacing: "{1.5,0,0}"
+    Object:
+        Type: Light
+        LightType: Point
+        OuterRadius: 0.7
+        InnerRadius: 0.1
+        Color: "{0.5,0.5,1}"
+        Position: "{-4.8, 0.3, -25.7}"
+        CastShadow: false
+        
+Tiled:
+    Count: "{3,1,1}"
+    Spacing: "{1.5,0,0}"
+    Object:
+        Type: Light
+        LightType: Point
+        OuterRadius: 0.7
+        InnerRadius: 0.1
+        Color: "{0.5,0.5,1}"
+        Position: "{-4.8, 0.3, -24.3}"
+        CastShadow: false
+        
+Tiled:
+    Count: "{3,1,1}"
+    Spacing: "{1.5,0,0}"
+    Object:
+        Type: Light
+        LightType: Point
+        OuterRadius: 0.7
+        InnerRadius: 0.1
+        Color: "{0.5,0.5,1}"
+        Position: "{1.2, 0.3, -24.3}"
+        CastShadow: false
+        
+Tiled:
+    Count: "{4,1,1}"
+    Spacing: "{3,0,0}"
+    Object:
+        Type: Light
+        LightType: Point
+        OuterRadius: 2.6
+        InnerRadius: 0.1
+        Color: "{0.5,0.5,0.8}"
+        Position: "{-4.8, 3.5, -25.0}"
+        CastShadow: false
+        Intensity: 0.1

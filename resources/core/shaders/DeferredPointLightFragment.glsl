@@ -61,25 +61,20 @@ void main()
         
     float attenuation = smoothstep( Radius.y, Radius.x, lightDistance );
     
-    float diffuse = max( 0.0, dot(-lightDirection,gNormal) );
+    float diffuse = dot(-lightDirection,gNormal);
     
     vec3 reflection = reflect(lightDirection, gNormal);
     
     vec3 eyeDir = normalize(CameraPosition-gPosition);
     float specular = max( dot(reflection, eyeDir), 0.0 );
+    specular = pow(specular,15)* gDiffuse.a;
     
-    if( diffuse == 0.0 ) {
-        specular = 0.0;
-    }
-    else {
-        specular = pow(specular,15)* gDiffuse.a;
-    }
-    
+    float facingLight = smoothstep( -0.5, 0.0, diffuse );
     
     float depthDistance = (lightDistance - clippingPlanes.x) / clippingPlanes.y;
     float shadowMod = texture( ShadowMap, vec4(lightDirection,depthDistance) );
     
-    color.rgb = gDiffuse.rgb * (Color.rgb+specular+diffuse) * attenuation * Color.a * shadowMod;
+    color.rgb = gDiffuse.rgb * (Color.rgb+specular+diffuse) * attenuation * Color.a * shadowMod * facingLight;
     
 //     color.rgb = vec3(depthDistance);
 }

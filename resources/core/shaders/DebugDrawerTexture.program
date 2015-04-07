@@ -15,5 +15,9 @@ Sampler:
 UniformBlock:
     Name: QuadInfo
     Index: 1
+
+UniformBlock:
+    Name: Uniforms
+    Index: 1
     
     

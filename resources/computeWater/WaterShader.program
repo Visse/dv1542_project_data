@@ -1,0 +1,45 @@
+Shader:
+    Type: Vertex
+    Source: WaterShaderVertex.glsl
+Shader:
+    Type: TessControl
+    Source: WaterShaderTessControl.glsl
+Shader:
+    Type: TessEval
+    Source: WaterShaderTessEval.glsl
+Shader:
+    Type: Fragment
+    Source: WaterShaderFragment.glsl
+    
+Attribute:
+    Name: Position
+    Index: 0 
+    
+Attribute:
+    Name: Texcoord
+    Index: 1
+
+UniformBlock:
+    Name: SceneInfo
+    Index: 0
+    
+UniformBlock:
+    Name: WaterUniforms
+    Index: 1
+    
+Sampler:
+    Name: DepthTexture
+    Unit: 0
+
+Sampler:
+    Name: WaterTexture
+    Unit: 1
+    
+Sampler:
+    Name: ColorTexture
+    Unit: 2
+
+Sampler:
+    Name: NormalTexture
+    Unit: 3
+

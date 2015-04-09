@@ -4,6 +4,7 @@ ResourcePack: lightRoom
 ResourcePack: roboArm
 ResourcePack: computeTest
 ResourcePack: particleRoom
+ResourcePack: computeWater
 
 AmbientColor: "{0.3,0.3,0.3}"
 SkyBox: SpaceSkyBox
@@ -98,10 +99,40 @@ Object:
     Orientation: "{0,-1.57,0}"
     DiffuseTexture: ParticleRoomDiffuse
     NormalMap: ParticleRoomNormal
-    
 Object:
     Type: ComputeParticle
     Position: "{10, 2.0, -25}"
+    
+Object:
+    Type: DeferredEntity
+    Mesh: "StationCorridorDoor"
+    Position: "{-4.8, 0, -25}"
+    Orientation: "{0,1.57,0}"
+    DiffuseTexture: StationDiffuse
+    NormalMap: StationNormal
+Object:
+    Type: DeferredEntity
+    Mesh: "WaterRoomMesh"
+    Position: "{-10, 0, -25}"
+    Orientation: "{0,1.57,0}"
+    DiffuseTexture: WaterRoomDiffuse
+    NormalMap: WaterRoomNormal
+Object: 
+    Type: ComputeWater
+    Position: "{-10,-0.1,-25}"
+    WaterSizeScale: 3.2
+    DepthFalloff: 0.05
+    HeightScale: 0.65
+    LightColor: "{0.5,0.5,0.8}"
+    LightPosition: "{-10, 3.1, -25}"
+    
+Object:
+    Type: Light
+    LightType: Point
+    OuterRadius: 7.5
+    InnerRadius: 1
+    Color: "{0.3,0.3,0.8}"
+    Position: "{-10, 3.1, -25}"
     
 Object:
     Type: RandomMovingObjects
@@ -114,6 +145,8 @@ Object:
         InnerRadius: 1
         Color: "{1,1,1}"
         Intensity: 0.2
+
+    
 
     
 #Tiled:
@@ -212,3 +245,4 @@ Tiled:
         Position: "{-4.8, 3.5, -25.0}"
         CastShadow: false
         Intensity: 0.1
+        

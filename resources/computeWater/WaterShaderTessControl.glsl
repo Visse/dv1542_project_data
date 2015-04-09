@@ -12,8 +12,7 @@ layout(std140) uniform SceneInfo
          InverseProjectionMatrix,
          InverseViewProjMatrix;
          
-    vec2 ClippingPlanes,
-         WindowSize;
+    vec2 ClippingPlanes, WindowSize;
     vec3 CameraPosition;
 };
 

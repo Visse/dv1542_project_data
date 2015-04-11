@@ -6,10 +6,14 @@ Shader:
     Source: FullScreenQuadGeometry.glsl
 Shader:
     Type: Fragment
-    Source: DeferredCopyDepthFragment.glsl
+    Source: DeferredCopyToWindowFragment.glsl
+    
+Sampler:
+    Name: Diffuse
+    Unit: 0
     
 Sampler:
     Name: Depth
-    Unit: 2
+    Unit: 1
 
     

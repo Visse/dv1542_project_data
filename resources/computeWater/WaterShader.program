@@ -30,16 +30,16 @@ UniformBlock:
 Sampler:
     Name: DepthTexture
     Unit: 0
+    
+Sampler:
+    Name: DiffuseTexture
+    Unit: 1
 
 Sampler:
     Name: WaterTexture
-    Unit: 1
-    
-Sampler:
-    Name: ColorTexture
     Unit: 2
 
 Sampler:
     Name: NormalTexture
-    Unit: 3
+    Unit: 4
 

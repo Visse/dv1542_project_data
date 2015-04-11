@@ -20,8 +20,11 @@ layout(std140) uniform WaterUniforms {
           HeightScale;
     vec2 ScrollDirection;
     float CurrentTime,
-          LODScale;
+          LODScale,
+          Frensel,
+          FrenselFalloff;
           
+    vec3 WaterColor;
     vec3 LightPosition,
          LightColor;
 };
@@ -29,8 +32,9 @@ layout(std140) uniform WaterUniforms {
 
 
 uniform sampler2D DepthTexture;
+uniform sampler2D DiffuseTexture;
+
 uniform sampler2D ColorTexture;
-uniform sampler2D WaterTexture;
 uniform sampler2D NormalTexture;
 
 in vec2 Texcoord;
@@ -49,32 +53,51 @@ float linearizeDepth( in float z )
 
 void main()
 {
-    float curDepth = linearizeDepth(texture2D( DepthTexture, gl_FragCoord.xy/WindowSize ).r);
-    float dDepth = curDepth - linearizeDepth(gl_FragCoord.z);
-    color.a = smoothstep( 0.0, DepthFalloff, dDepth );
+    vec2 waterTexcoord = Texcoord + ScrollDirection * CurrentTime;
     
-    vec2 texcoord = Texcoord + ScrollDirection * CurrentTime;
-    
-    color.rgb = texture2D( ColorTexture, texcoord ).rgb;
+    float waterDepth = linearizeDepth( gl_FragCoord.z );
     
     mat3 tangentMat = (mat3(
         normalize(Tangent),  normalize(Bitangent), normalize(Normal)
     ));
     
-    vec3 normal = texture2D( NormalTexture, texcoord ).xyz*2-1;
-    normal = normalize( tangentMat * normal );
+    vec3 waterNormal = texture2D( NormalTexture, waterTexcoord ).xyz*2-1;
+    waterNormal = normalize( tangentMat * waterNormal );
     
     vec3 lightDir = normalize(Position-LightPosition);
 
-    vec3 reflection = reflect(lightDir, normalize(normal) );
+    vec3 reflection = reflect(lightDir, normalize(waterNormal) );
     
     vec3 eyeDir = normalize(CameraPosition-Position);
     float specular = max( dot(reflection, eyeDir), 0.0 );
     specular = pow(specular, 100);
     
-    color.rgb += vec3(specular) * LightColor;
-//     color.rgb = normal;
-//     color.a = 1.0;
+    vec3 waterSpecular = vec3(specular) * LightColor;
+    
+    vec2 WindowTexcoord = gl_FragCoord.xy / WindowSize;
+    float curDepth = linearizeDepth(texture2D( DepthTexture, WindowTexcoord ).r);
+    
+    float waterDdepth = curDepth - waterDepth;
+    float waterAlpha = smoothstep( 0.0, DepthFalloff, waterDdepth );
+    
+    float frenselScale = curDepth - waterDepth;
+    
+    float frensel = Frensel * frenselScale;
+    vec2 offset = waterNormal.xy * frensel;
+    vec2 frenselTexcoord = clamp( WindowTexcoord+offset, vec2(0), vec2(1) );
+    
+    float frenselDepth = texture2D(DepthTexture, frenselTexcoord).r;
+    
+    vec4 frenselPos = InverseViewProjMatrix * vec4( frenselTexcoord*2-1, frenselDepth*2-1, 1.0 );
+    frenselPos.xyz /= frenselPos.w;
+    
+    float frenselDist = distance( frenselPos.xyz, Position );
+    float alpha = smoothstep( 0.0, FrenselFalloff, frenselDist );
+   
+    vec3 gColor = texture2D( DiffuseTexture, frenselTexcoord ).xyz;
+    
+    
+    color.rgb = mix( gColor, WaterColor, alpha ) + waterSpecular;
 }
 
 

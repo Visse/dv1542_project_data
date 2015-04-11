@@ -22,8 +22,11 @@ layout(std140) uniform WaterUniforms {
           HeightScale;
     vec2 ScrollDirection;
     float CurrentTime,
-          LODScale;
+          LODScale,
+          Frensel,
+          FrenselFalloff;
           
+    vec3 WaterColor;
     vec3 LightPosition,
          LightColor;
 };

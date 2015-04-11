@@ -16,17 +16,22 @@ layout(std140) uniform SceneInfo
     vec3 CameraPosition;
 };
 
+
 layout(std140) uniform WaterUniforms {
     mat4 ModelMatrix;
     float DepthFalloff,
           HeightScale;
     vec2 ScrollDirection;
     float CurrentTime,
-          LODScale;
+          LODScale,
+          Frensel,
+          FrenselFalloff;
           
+    vec3 WaterColor;
     vec3 LightPosition,
          LightColor;
 };
+
 
 
 in VertexData {

@@ -28,8 +28,4 @@ UniformBlock:
 
 Sampler:
     Name: WaterTexture
-    Unit: 1
-    
-Sampler:
-    Name: ColorTexture
     Unit: 2

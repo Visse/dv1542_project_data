@@ -119,10 +119,10 @@ Object:
     NormalMap: WaterRoomNormal
 Object: 
     Type: ComputeWater
-    Position: "{-10,-0.1,-25}"
+    Position: "{-10,-0.5,-25}"
     WaterSizeScale: 3.2
     DepthFalloff: 0.05
-    HeightScale: 0.65
+    HeightScale: 1.2
     LightColor: "{0.5,0.5,0.8}"
     LightPosition: "{-10, 3.1, -25}"
     
